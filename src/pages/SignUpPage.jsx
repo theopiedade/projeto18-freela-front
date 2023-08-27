@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import MyWalletLogo from "../components/MyWalletLogo"
 import { useState } from "react"
+import axios from "axios"
 
 export default function SignUpPage() {
   
@@ -9,19 +10,32 @@ export default function SignUpPage() {
   const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
-  
+  const navigate = useNavigate();
+    
+  function returnHome() {
+      navigate("/");
+  }
+
+  function signUpError(answer) {
+      alert(answer.response.data.message);
+      setFormStatus(false);
+  }
 
   function signUp(event) {
     if (password != passwordCheck) alert("Senhas não conferem");
-    else 
-    event.preventDefault();
-      const data = {
-      	email: email,
-        name: name,
-        image: foto,
-        password: password
-     };
-  }
+    else {
+      event.preventDefault();
+        const data = {
+          email: email,
+          name: name,
+          password: password
+      };
+
+      const query = axios.post('https://localhost:5000/signup', data);
+      query.then(returnHome); 
+      query.catch(signUpError);
+    }
+  } 
 
   return (
     <SingUpContainer>
