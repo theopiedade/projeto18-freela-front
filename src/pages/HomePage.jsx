@@ -1,12 +1,32 @@
 import styled from "styled-components"
 import { BiExit } from "react-icons/bi"
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
+import { useEffect } from "react"
+import { useState } from "react"
+
+const URL = 'http://localhost:5000';
 
 export default function HomePage() {
+  const navigate = useNavigate();
+  const [name, setName] = useState();
+  const token = localStorage.getItem("Token");
+
+  /*
+  useEffect(() => {
+    const query = axios.get(URL+'/user', {"Token": token});
+    query.then(response => {
+        setName(response.data);
+        console.log(response.data);
+    });
+  }, []);
+  */
+
   return (
     <HomeContainer>
       <Header>
-        <h1>Olá, Fulano</h1>
+        <h1>Olá, {name}</h1>
         <BiExit />
       </Header>
 
@@ -37,11 +57,11 @@ export default function HomePage() {
 
 
       <ButtonsContainer>
-        <button>
+        <button onClick={() => navigate("/nova-transacao/:entrada")}>
           <AiOutlinePlusCircle />
           <p>Nova <br /> entrada</p>
         </button>
-        <button>
+        <button onClick={() => navigate("/nova-transacao/:saida")}>
           <AiOutlineMinusCircle />
           <p>Nova <br />saída</p>
         </button>

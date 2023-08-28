@@ -12,8 +12,9 @@ export default function SignInPage() {
 	const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  function signInSuccess() {
-    localStorage.setItem("email", email);
+  function signInSuccess(answer) {
+    localStorage.setItem("Token", answer.data);
+    console.log("Signin Token: "+answer.data);
     navigate("/home");
   }
 
