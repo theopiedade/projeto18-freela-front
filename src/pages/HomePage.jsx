@@ -13,6 +13,11 @@ export default function HomePage() {
   const [name, setName] = useState();
   const token = localStorage.getItem("Token");
 
+  function logout() {
+    localStorage.removeItem("Token", answer.data);
+    navigate("/");
+  }
+
   /*
   useEffect(() => {
     const query = axios.get(URL+'/user', {"Token": token});
@@ -27,7 +32,7 @@ export default function HomePage() {
     <HomeContainer>
       <Header>
         <h1>Olá, {name}</h1>
-        <BiExit />
+        <BiExit onClick={logout}/>
       </Header>
 
       <TransactionsContainer>
@@ -57,11 +62,11 @@ export default function HomePage() {
 
 
       <ButtonsContainer>
-        <button onClick={() => navigate("/nova-transacao/:entrada")}>
+        <button data-test="new-income" onClick={() => navigate("/nova-transacao/:entrada")}>
           <AiOutlinePlusCircle />
           <p>Nova <br /> entrada</p>
         </button>
-        <button onClick={() => navigate("/nova-transacao/:saida")}>
+        <button data-test="new-expense" onClick={() => navigate("/nova-transacao/:saida")}>
           <AiOutlineMinusCircle />
           <p>Nova <br />saída</p>
         </button>
