@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
 import MyWalletLogo from "../components/MyWalletLogo"
 import { useState} from "react"
+import axios from "axios"
 
 
 const URL = 'http://localhost:5000';
@@ -9,6 +10,7 @@ const URL = 'http://localhost:5000';
 export default function SignInPage() {
   const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   function signInSuccess() {
     localStorage.setItem("email", email);
