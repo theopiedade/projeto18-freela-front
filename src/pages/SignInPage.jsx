@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
-import MyWalletLogo from "../components/MyWalletLogo"
+import FreelaLogo from "../components/FreelaLogo"
 import { useState} from "react"
 import axios from "axios"
 
@@ -40,7 +40,7 @@ export default function SignInPage() {
   return (
     <SingInContainer>
       <form onSubmit={signIn}>
-        <MyWalletLogo />
+        <FreelaLogo />
         <input data-test="email" placeholder="E-mail" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
         <input data-test="password" placeholder="Senha" type="password" autoComplete="new-password" value={password} onChange={e => setPassword(e.target.value)} />
         <button data-test="sign-in-submit" >Entrar</button>

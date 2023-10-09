@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import { BiExit } from "react-icons/bi"
-import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useEffect } from "react"
@@ -31,7 +30,7 @@ export default function HomePage() {
   return (
     <HomeContainer>
       <Header>
-        <h1>Olá, {name}</h1>
+        <h1>Itens disponíveis:</h1>
         <BiExit onClick={logout}/>
       </Header>
 
@@ -42,7 +41,6 @@ export default function HomePage() {
               <span>30/11</span>
               <strong>Almoço mãe</strong>
             </div>
-            <Value color={"negativo"}>120,00</Value>
           </ListItemContainer>
 
           <ListItemContainer>
@@ -54,21 +52,18 @@ export default function HomePage() {
           </ListItemContainer>
         </ul>
 
-        <article>
-          <strong>Saldo</strong>
-          <Value color={"positivo"}>2880,00</Value>
-        </article>
       </TransactionsContainer>
 
 
       <ButtonsContainer>
-        <button data-test="new-income" onClick={() => navigate("/nova-transacao/:entrada")}>
-          <AiOutlinePlusCircle />
-          <p>Nova <br /> entrada</p>
+        <button onClick={() => navigate("/home")}>
+          <p>Tela Inicial</p>
         </button>
-        <button data-test="new-expense" onClick={() => navigate("/nova-transacao/:saida")}>
-          <AiOutlineMinusCircle />
-          <p>Nova <br />saída</p>
+        <button onClick={() => navigate("/nova-transacao/:entrada")}>
+          <p>Gerenciar</p>
+        </button>
+        <button onClick={() => navigate("/nova-transacao/:saida")}>
+          <p>Adicionar</p>
         </button>
       </ButtonsContainer>
 
@@ -139,6 +134,11 @@ const ListItemContainer = styled.li`
   margin-bottom: 8px;
   color: #000000;
   margin-right: 10px;
+  img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
   div span {
     color: #c6c6c6;
     margin-right: 10px;

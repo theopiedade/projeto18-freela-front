@@ -9,6 +9,9 @@ export default function TransactionsPage() {
   const { transactionType } = useParams()
   const [value, setValue] = useState()
   const [description, setDescription] = useState()
+  const [price, setPrice] = useState()
+  const [photo, setPhoto] = useState()
+  const [active_state, setActiveState] = useState()
   const navigate = useNavigate()
   const token = localStorage.getItem("Token")
 
@@ -47,10 +50,13 @@ export default function TransactionsPage() {
 
   return (
     <TransactionsContainer>
-      <h1>Nova TRANSAÇÃO</h1>
+      <h1>Novo SERVIÇO</h1>
       <form onSubmit={sendTransaction}>
-        <input placeholder="Valor" type="text" value={value} onChange={e => setValue(e.target.value)}/>
+        <input placeholder="Foto" type="text" value={photo} onChange={e => setPhoto(e.target.value)}/>
         <input placeholder="Descrição" type="text" value={description} onChange={e => setDescription(e.target.value)}/>
+        <input placeholder="Preço" type="text" value={price} onChange={e => setPrice(e.target.value)}/>
+        Ativo?
+        <input placeholder="Status" type="checkbox" value={active_state} onChange={e => setActiveState(e.target.value)}/>
         <button>Salvar TRANSAÇÃO</button>
       </form>
     </TransactionsContainer>

@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
-export default function MyWalletLogo() {
+export default function FreelaLogo() {
     return (
-        <Text>MyWallet</Text>
+        <Text>Freela</Text>
     )
 }
 
